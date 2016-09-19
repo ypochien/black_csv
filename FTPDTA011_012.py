@@ -1,39 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import csv
-import io
-import sys
-import HTML
 import itertools
 
+import HTML
 
-
-def to_utf8(str_cp950):
-    return str_cp950.decode('cp950').encode(sys.stdin.encoding, 'replace').decode(sys.stdin.encoding)
-
-
-
-with io.open('data/FTPDTA011.csv',mode='rb') as csv_file:
-    reader = csv.reader(csv_file)
-    data011_ = list(reader)
-    data011 = [ row + [''] for row in data011_]
-
-with io.open('data/FTPDTA012.csv',mode='rb') as csv_file:
-    reader = csv.reader(csv_file)
-    data012 = list(reader)
-
-new_data = itertools.izip_longest(data011[1:],data012[1:],fillvalue='')
-final_data=[]
-for items in new_data:
-    row = []
-    for item in items:
-        row.extend(item)
-
-    final_data.append(row)
-t = HTML.Table(final_data , header_row=data011[0])
-
-with io.open('out/FTPDTA011_012.html', mode='w') as html_file:
-    html_file.write(u'''
+HTML_HEADER = '''
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
@@ -45,5 +17,31 @@ with io.open('out/FTPDTA011_012.html', mode='w') as html_file:
         table, td, th {
             border: 1px solid black;
         }
-    </style>\r''')
-    html_file.write(to_utf8(str(t)))
+    </style>\r'''
+
+with open('data/FTPDTA011.csv' , mode='r' , encoding='cp950') as csv_file:
+    reader = csv.reader(csv_file)
+    data011 = [rec + [' '] for rec in list(reader)]
+for item in data011:
+    print(item)
+
+with open('data/FTPDTA012.csv' , mode='r' , encoding='cp950') as csv_file:
+    reader = csv.reader(csv_file)
+    data012 = list(reader)
+for item in data012:
+    print(item)
+
+new_data = itertools.zip_longest(data011[1:] , data012[1:] , fillvalue='')
+final_data = []
+for items in new_data:
+    row = []
+    for item in items:
+        row.extend(item)
+
+    final_data.append(row)
+t = HTML.Table(final_data)
+
+with open('out/FTPDTA011_012.html' , mode='w' , encoding='utf-8') as html_file:
+    html_file.write(HTML_HEADER)
+    html_file.write(data011[0][0])
+    html_file.write(str(t))
