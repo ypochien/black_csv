@@ -20,12 +20,12 @@ HTML_HEADER = '''
 
 with open('data/FTPDTA015.csv' , mode='r' , encoding='cp950') as csv_file:
     reader = csv.reader(csv_file)
-    data013 = list(reader)
+    data015 = list(reader)
 
-t = HTML.Table(data013[2:])
+t = HTML.Table(data015[2:])
 
 with open('out/FTPDTA015.html' , mode='w' , encoding='utf-8') as html_file:
     html_file.write(HTML_HEADER)
-    html_file.write(data013[0][0] + '<BR>\r\n')
-    html_file.write(data013[1][0] + '<BR>\r\n')
+    html_file.write(data015[0][0] + '<BR>\r\n')
+    html_file.write(data015[1][0] + '<BR>\r\n')
     html_file.write(str(t))
