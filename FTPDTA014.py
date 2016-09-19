@@ -1,26 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import csv
-import io
-import sys
+
 import HTML
-import itertools
 
-
-
-def to_utf8(str_cp950):
-    return str_cp950.decode('cp950').encode(sys.stdin.encoding, 'replace').decode(sys.stdin.encoding)
-
-
-
-with io.open('data/FTPDTA014.csv',mode='rb') as csv_file:
-    reader = csv.reader(csv_file)
-    data013 = list(reader)
-
-t = HTML.Table(data013[1:] , header_row=data013[0])
-
-with io.open('out/FTPDTA014.html', mode='w') as html_file:
-    html_file.write(u'''
+HTML_HEADER = '''
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
@@ -32,5 +16,15 @@ with io.open('out/FTPDTA014.html', mode='w') as html_file:
         table, td, th {
             border: 1px solid black;
         }
-    </style>\r''')
-    html_file.write(to_utf8(str(t)))
+    </style>\r'''
+
+with open('data/FTPDTA014.csv' , mode='r' , encoding='cp950') as csv_file:
+    reader = csv.reader(csv_file)
+    data013 = list(reader)
+
+t = HTML.Table(data013[1:])
+
+with open('out/FTPDTA014.html' , mode='w' , encoding='utf-8') as html_file:
+    html_file.write(HTML_HEADER)
+    html_file.write(data013[0][0])
+    html_file.write(str(t))
