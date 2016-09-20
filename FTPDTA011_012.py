@@ -16,6 +16,7 @@ HTML_HEADER = '''
         }
         table, td, th {
             border: 1px solid black;
+            font-size: 14px;
         }
     </style>\r'''
 
