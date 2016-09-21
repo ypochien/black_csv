@@ -117,6 +117,17 @@ def FTPDTA011_012():
         reader = csv.reader(csv_file)
         data012 = list(reader)
 
+    row_item_count = len(data011[0])
+    if len(data011[-1]) < row_item_count:
+        data011[-1] = list(' ') * row_item_count
+
+    append_count = len(data012) - len(data011)
+    if append_count > 0:
+
+        for i in range(append_count):
+            data011.append(list(' ') * row_item_count)
+
+
     new_data = itertools.zip_longest(data011[1:] , data012[1:] , fillvalue='')
     final_data = []
     for items in new_data:
