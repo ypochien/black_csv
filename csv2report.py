@@ -80,13 +80,13 @@ def FTPDTA03():
             }
         </style>\r'''
 
-    with open('data/FTPDTA03.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA03.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
         data013 = list(reader)
 
     t = HTML.Table(data013[1:])
 
-    with open('out/FTPDTA03.html' , mode='w' , encoding='utf-8') as html_file:
+    with open('out/FTPDTA03.html' , mode='w' , encoding='utf-8' , errors='replace') as html_file:
         html_file.write(HTML_HEADER)
         html_file.write(data013[0][0])
         html_file.write(str(t))
@@ -108,11 +108,12 @@ def FTPDTA011_012():
             }
         </style>\r'''
 
-    with open('data/FTPDTA011.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA011.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
-        data011 = [rec + [' '] for rec in list(reader)]
+        data011 = list(reader)
+        # data011 = [rec + [' '] for rec in list(reader)]
 
-    with open('data/FTPDTA012.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA012.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
         data012 = list(reader)
 
@@ -126,7 +127,7 @@ def FTPDTA011_012():
         final_data.append(row)
     t = HTML.Table(final_data)
 
-    with open('out/FTPDTA011_012.html' , mode='w' , encoding='utf-8') as html_file:
+    with open('out/FTPDTA011_012.html' , mode='w' , encoding='utf-8' , errors='replace') as html_file:
         html_file.write(HTML_HEADER)
         html_file.write(data011[0][0])
         html_file.write(str(t))
@@ -148,7 +149,7 @@ def FTPDTA013():
             }
         </style>\r'''
 
-    with open('data/FTPDTA013.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA013.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
         data013 = list(reader)
 
@@ -176,7 +177,7 @@ def FTPDTA014():
             }
         </style>\r'''
 
-    with open('data/FTPDTA014.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA014.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
         data014 = list(reader)
 
@@ -204,7 +205,7 @@ def FTPDTA015():
             }
         </style>\r'''
 
-    with open('data/FTPDTA015.csv' , mode='r' , encoding='cp950') as csv_file:
+    with open('data/FTPDTA015.csv' , mode='r' , encoding='cp950' , errors='replace') as csv_file:
         reader = csv.reader(csv_file)
         data015 = list(reader)
 
