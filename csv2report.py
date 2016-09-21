@@ -49,7 +49,7 @@ def FTPDTA01():
                 if '收盤' == c2:
                     row_html += ' align="right"'
                 row_html += '>{c1}</td><td>{c2}</td><td></td>'
-                if row[1] != '':
+                if row[1] != '' and len(row[1]) > 1:
                     c3 = row[1][0]
                     c4 = row[1][1]
                     row_html += '<td'
