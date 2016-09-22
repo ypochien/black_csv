@@ -5,6 +5,23 @@ import itertools
 
 import HTML
 
+PRINT_BTN = '''
+    <style type="text/css" media="print">
+        .printbutton {
+          visibility: hidden;
+          display: none;
+        }
+    </style>
+    <style>
+        .printbutton {
+        height:20px; position:relative; margin: 10px -50px; width:100px; top:5%; left:50%;}
+    </style>
+    <script>
+    document.write("<input type='button' " +
+    "onClick='window.print()' " +
+    "class='printbutton' " +
+    "value='列印此文件' />");
+    </script>'''
 
 def FTPDTA01():
     HTML_HEADER = '''
@@ -26,6 +43,7 @@ def FTPDTA01():
 
     with open('out/FTPDTA01.html' , mode='w' , encoding='utf-8') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write('<table align="center">\r')
         r = 0
         break_count = len(csv_data) / 2
@@ -88,6 +106,7 @@ def FTPDTA03():
 
     with open('out/FTPDTA03.html' , mode='w' , encoding='utf-8' , errors='replace') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write(data013[0][0])
         html_file.write(str(t))
 
@@ -140,6 +159,7 @@ def FTPDTA011_012():
 
     with open('out/FTPDTA011_012.html' , mode='w' , encoding='utf-8' , errors='replace') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write(data011[0][0])
         html_file.write(str(t))
 
@@ -168,6 +188,7 @@ def FTPDTA013():
 
     with open('out/FTPDTA013.html' , mode='w' , encoding='utf-8') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write(data013[0][0])
         html_file.write(str(t))
 
@@ -196,6 +217,7 @@ def FTPDTA014():
 
     with open('out/FTPDTA014.html' , mode='w' , encoding='utf-8') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write(data014[0][0])
         html_file.write(str(t))
 
@@ -224,6 +246,7 @@ def FTPDTA015():
 
     with open('out/FTPDTA015.html' , mode='w' , encoding='utf-8') as html_file:
         html_file.write(HTML_HEADER)
+        html_file.write(PRINT_BTN)
         html_file.write(data015[0][0] + '<BR>\r\n')
         html_file.write(data015[1][0] + '<BR>\r\n')
         html_file.write(str(t))
